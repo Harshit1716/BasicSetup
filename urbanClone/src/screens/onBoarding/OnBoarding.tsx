@@ -10,6 +10,7 @@ import {
   Alert,
 } from 'react-native';
 import {COLORS, FONTS, SIZES, ICONS} from '../../resources';
+import {useNavigation} from '@react-navigation/native';
 
 const onBoardings = [
   {
@@ -32,7 +33,9 @@ const onBoardings = [
   },
 ];
 
-const OnBoarding = () => {
+const OnBoarding = ({navigation}: any) => {
+  // const navigation = useNavigation();
+  console.log(navigation);
   const scrollX = new Animated.Value(0);
 
   // Render
@@ -66,8 +69,7 @@ const OnBoarding = () => {
               <View style={{padding: '2%', marginTop: '-35%'}}>
                 <Text
                   style={{
-                    //   ...FONTS.h1,
-                    fontSize: SIZES.h1,
+                    ...FONTS.h1,
                     color: COLORS.gray,
                     textAlign: 'center',
                   }}>
@@ -75,32 +77,22 @@ const OnBoarding = () => {
                 </Text>
                 <Text
                   style={{
-                    //   ...FONTS.body3,
+                    ...FONTS.body2,
                     padding: '2%',
-                    fontSize: SIZES.body3,
                     textAlign: 'center',
-                    marginTop: SIZES.base,
                     color: COLORS.gray,
                   }}>
                   {item.description}
                 </Text>
               </View>
               <TouchableOpacity
-                style={[{marginVertical: '7%'}, styles.loginBtn]}
+                style={[{marginVertical: '20%'}, styles.loginBtn]}
                 onPress={() => {
-                  console.log('button pressed');
+                  navigation?.navigate('BottomTabs');
+                  // console.log('button pressed');
                 }}>
-                <Text style={{color: COLORS.white, fontSize: SIZES.h2}}>
-                  Login
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={styles.loginBtn}
-                onPress={() => {
-                  console.log('button pressed');
-                }}>
-                <Text style={{color: COLORS.white, fontSize: SIZES.h2}}>
-                  Sign Up
+                <Text style={{color: COLORS.white, ...FONTS.h3}}>
+                  Get Started
                 </Text>
               </TouchableOpacity>
             </View>
