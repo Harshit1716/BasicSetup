@@ -1,7 +1,7 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {View, Text, TouchableOpacity} from 'react-native';
-import {Dashboard, Home} from '../screens';
-import {SIZES} from '../resources';
+import {View, Text, TouchableOpacity, Image} from 'react-native';
+import {Dashboard, Home, Search} from '../screens';
+import {COLORS, ICONS, SIZES} from '../resources';
 
 const Tab = createBottomTabNavigator();
 
@@ -13,20 +13,62 @@ const BottomTab = () => {
         component={Dashboard}
         options={{
           headerShown: false,
+          tabBarIcon: ({focused, color, size}) => {
+            return (
+              <Image
+                style={{
+                  height: 30,
+                  width: 30,
+                  tintColor: focused ? COLORS.primary : COLORS.gray,
+                }}
+                source={ICONS.HOME_TAB_ICON}
+              />
+            );
+          },
+          tabBarActiveTintColor: COLORS.primary,
+          tabBarInactiveTintColor: COLORS.gray,
         }}
       />
       <Tab.Screen
-        name="Profile"
-        component={Dashboard}
+        name="Search"
+        component={Search}
         options={{
           headerShown: false,
+          tabBarIcon: ({focused, color, size}) => {
+            return (
+              <Image
+                style={{
+                  height: 35,
+                  width: 35,
+                  tintColor: focused ? COLORS.primary : COLORS.gray,
+                }}
+                source={ICONS.SEARCH_ICON}
+              />
+            );
+          },
+          tabBarActiveTintColor: COLORS.primary,
+          tabBarInactiveTintColor: COLORS.gray,
         }}
       />
       <Tab.Screen
-        name="Settings"
+        name="Account"
         component={Dashboard}
         options={{
           headerShown: false,
+          tabBarIcon: ({focused, color, size}) => {
+            return (
+              <Image
+                style={{
+                  height: 35,
+                  width: 35,
+                  tintColor: focused ? COLORS.primary : COLORS.gray,
+                }}
+                source={ICONS.ACCOUNT_TAB_ICON}
+              />
+            );
+          },
+          tabBarActiveTintColor: COLORS.primary,
+          tabBarInactiveTintColor: COLORS.gray,
         }}
       />
     </Tab.Navigator>

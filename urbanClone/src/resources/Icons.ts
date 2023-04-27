@@ -11,8 +11,16 @@ const WASHING_ICON = require('../assets/washingService.jpeg');
 const AC_SERVICE_ICON = require('../assets/download.jpeg');
 const CAR_SERVICE_ICON = require('../assets/carWash.jpeg');
 const ELECTRICIAN_SERVICE_ICON = require('../assets/electricianService.jpeg');
+const HOME_TAB_ICON = require('../assets/home.png');
+const ACCOUNT_TAB_ICON = require('../assets/account.png');
+const FILTER_ICON = require('../assets/Filter.png');
+const STAR_ICON = require('../assets/star.png');
 
 export {
+  STAR_ICON,
+  FILTER_ICON,
+  ACCOUNT_TAB_ICON,
+  HOME_TAB_ICON,
   CHAT_ICON,
   BANNER_ICON,
   ONBOARDING_ONE_ICON,

@@ -284,7 +284,7 @@ const Dashboard = () => {
         style={{
           backgroundColor: 'white',
           paddingVertical: '5%',
-          marginVertical: '5%',
+          marginBottom: '5%',
         }}>
         {headingComponent('Offers for you')}
         <Banners data={item} />

@@ -47,7 +47,15 @@ export const FONTS = {
   body4: {fontFamily: 'Roboto-Regular', fontSize: SIZES.body4, lineHeight: 22},
   body5: {fontFamily: 'Roboto-Regular', fontSize: SIZES.body5, lineHeight: 22},
 };
+export const SHADOW = {
+  shadowColor: COLORS.lightGray,
+  shadowOffset: {width: 0, height: 3},
+  shadowOpacity: 0.4,
+  shadowRadius: 2,
+  borderColor: COLORS.lightGray,
+  elevation: 4,
+};
 
-const appTheme = {COLORS, SIZES, FONTS};
+const appTheme = {COLORS, SIZES, FONTS, SHADOW};
 
 export default appTheme;

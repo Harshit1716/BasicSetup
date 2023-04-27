@@ -7,8 +7,51 @@ import {
   View,
 } from 'react-native';
 import React from 'react';
-import {COLORS, ICONS, SIZES} from '../resources';
+import {COLORS, FONTS, ICONS, SIZES} from '../resources';
 
+export const SearchComponent = () => {
+  return (
+    <View
+      style={{
+        borderWidth: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: COLORS.white,
+        padding: '1%',
+        borderRadius: 10,
+        marginTop: '5%',
+        marginHorizontal: '3%',
+        flexDirection: 'row',
+        paddingVertical: '4%',
+        shadowColor: COLORS.lightGray,
+        shadowOffset: {width: 0, height: 3},
+        shadowOpacity: 0.4,
+        shadowRadius: 2,
+        borderColor: COLORS.lightGray,
+        elevation: 4,
+      }}>
+      <Image
+        resizeMode="contain"
+        style={{
+          marginRight: '2%',
+          height: 30,
+          width: 30,
+          tintColor: 'orange',
+        }}
+        source={ICONS.SEARCH_ICON}
+      />
+      <TextInput
+        placeholder="Search for (cleaning service)"
+        style={{
+          width: '90%',
+          ...FONTS.body4,
+          color: COLORS.primary,
+          paddingRight: '3%',
+        }}
+      />
+    </View>
+  );
+};
 const HeaderComponent = () => {
   return (
     <View
@@ -69,39 +112,7 @@ const HeaderComponent = () => {
           />
         </TouchableOpacity>
       </View>
-      <View
-        style={{
-          borderWidth: 1,
-          alignItems: 'center',
-          backgroundColor: COLORS.white,
-          padding: '1%',
-          borderRadius: 10,
-          marginTop: '5%',
-          marginHorizontal: '3%',
-          flexDirection: 'row',
-          paddingVertical: '4%',
-          shadowColor: COLORS.lightGray,
-          shadowOffset: {width: 0, height: 3},
-          shadowOpacity: 0.4,
-          shadowRadius: 2,
-          borderColor: COLORS.lightGray,
-          elevation: 4,
-        }}>
-        <Image
-          resizeMode="contain"
-          style={{
-            marginRight: '2%',
-            height: 30,
-            width: 30,
-            tintColor: 'orange',
-          }}
-          source={ICONS.SEARCH_ICON}
-        />
-        <TextInput
-          placeholder="Search for (cleaning service)"
-          style={{width: '90%'}}
-        />
-      </View>
+      <SearchComponent />
     </View>
   );
 };
