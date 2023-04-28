@@ -94,18 +94,17 @@ const Search = () => {
 
   const renderServiceItem = ({item, index}: any) => {
     return (
-      <View
+      <TouchableOpacity
         style={{
           borderBottomWidth: 1,
           borderBottomColor: COLORS.lightGray,
           paddingVertical: '5%',
-          // paddingVertical: '5%',
           justifyContent: 'center',
           alignItems: 'center',
           flexDirection: 'row',
         }}>
         <View style={{flex: 1}}>
-          <Text numberOfLines={2} style={{...FONTS.h3}}>
+          <Text numberOfLines={2} style={{...FONTS.h3, marginBottom: '2%'}}>
             Full AC service + Filter replacement{' '}
           </Text>
           <View
@@ -123,27 +122,29 @@ const Search = () => {
           </View>
           <View style={{paddingVertical: '3%', paddingRight: '3%'}}>
             <Text
-              numberOfLines={2}
+              numberOfLines={1}
               style={{...FONTS.body4, color: COLORS.gray}}>
-              100% colophony free and low het consuming Specially available for
-              anyone
+              100% colophony free
             </Text>
             <Text
               numberOfLines={2}
               style={{...FONTS.body4, color: COLORS.gray}}>
-              100% colophony free and low het consuming Specially available for
-              anyone
+              100% colophony free and low het consuming
             </Text>
           </View>
         </View>
-        <View style={{height: 100, width: 100, borderRadius: 20}}>
+        <View style={{alignSelf: 'flex-start'}}>
           <Image
-            resizeMode="contain"
-            style={{height: 100, width: 100}}
+            resizeMode="cover"
+            style={{
+              height: 100,
+              width: 100,
+              borderRadius: 10,
+            }}
             source={ICONS.AC_SERVICE_ICON}
           />
         </View>
-      </View>
+      </TouchableOpacity>
     );
   };
   const serviceRow = () => {

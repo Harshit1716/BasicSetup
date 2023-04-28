@@ -15,8 +15,12 @@ const HOME_TAB_ICON = require('../assets/home.png');
 const ACCOUNT_TAB_ICON = require('../assets/account.png');
 const FILTER_ICON = require('../assets/Filter.png');
 const STAR_ICON = require('../assets/star.png');
+const FORWARD_ICON = require('../assets/forwardArrow.png');
+const BACKWARD_ICON = require('../assets/backArrow.png');
 
 export {
+  FORWARD_ICON,
+  BACKWARD_ICON,
   STAR_ICON,
   FILTER_ICON,
   ACCOUNT_TAB_ICON,

@@ -1,6 +1,6 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {View, Text, TouchableOpacity, Image} from 'react-native';
-import {Dashboard, Home, Search} from '../screens';
+import {Account, Dashboard, Home, Search} from '../screens';
 import {COLORS, ICONS, SIZES} from '../resources';
 
 const Tab = createBottomTabNavigator();
@@ -52,9 +52,9 @@ const BottomTab = () => {
       />
       <Tab.Screen
         name="Account"
-        component={Dashboard}
+        component={Account}
         options={{
-          headerShown: false,
+          // headerShown: false,
           tabBarIcon: ({focused, color, size}) => {
             return (
               <Image
