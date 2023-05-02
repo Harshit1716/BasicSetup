@@ -17,8 +17,15 @@ const FILTER_ICON = require('../assets/Filter.png');
 const STAR_ICON = require('../assets/star.png');
 const FORWARD_ICON = require('../assets/forwardArrow.png');
 const BACKWARD_ICON = require('../assets/backArrow.png');
+const DOT_ICON = require('../assets/dot.png');
+const CLOCK_ICON = require('../assets/Tumer.png');
+const LABEL_ICON = require('../assets/label.png');
+const CLOSE_ICON = require('../assets/close.png');
 
 export {
+  CLOSE_ICON,
+  CLOCK_ICON,
+  DOT_ICON,
   FORWARD_ICON,
   BACKWARD_ICON,
   STAR_ICON,
@@ -38,4 +45,5 @@ export {
   WASHING_ICON,
   CAR_SERVICE_ICON,
   ELECTRICIAN_SERVICE_ICON,
+  LABEL_ICON,
 };

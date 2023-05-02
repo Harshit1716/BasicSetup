@@ -11,6 +11,8 @@ import {
 } from 'react-native';
 import {COLORS, FONTS, SIZES, ICONS} from '../../resources';
 import {useNavigation} from '@react-navigation/native';
+import {useAppDispatch} from '../../stateManagemer/Store';
+import {login, logout} from '../../stateManagemer/slice/UserSlice';
 
 const onBoardings = [
   {
@@ -37,6 +39,7 @@ const OnBoarding = ({navigation}: any) => {
   // const navigation = useNavigation();
   console.log(navigation);
   const scrollX = new Animated.Value(0);
+  const dipatch = useAppDispatch();
 
   // Render
 
@@ -88,7 +91,12 @@ const OnBoarding = ({navigation}: any) => {
               <TouchableOpacity
                 style={[{marginVertical: '20%'}, styles.loginBtn]}
                 onPress={() => {
-                  navigation?.navigate('BottomTabs');
+                  const data = {
+                    email: 'harry@yopmail.com',
+                    name: 'Harry Potter',
+                  };
+                  dipatch(login(data));
+                  // navigation?.navigate('BottomTabs');
                   // console.log('button pressed');
                 }}>
                 <Text style={{color: COLORS.white, ...FONTS.h3}}>

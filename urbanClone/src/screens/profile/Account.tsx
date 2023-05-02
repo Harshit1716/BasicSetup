@@ -11,50 +11,56 @@ import React, {useEffect} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {COLORS, FONTS, ICONS} from '../../resources';
-
+import {useAppDispatch, useAppSelector} from '../../stateManagemer/Store';
+import {logout} from '../../stateManagemer/slice/UserSlice';
+const options = [
+  {
+    title: 'My Wallet',
+    screen: 'My Wallet',
+  },
+  {
+    title: 'My Booking',
+    screen: 'My Booking',
+  },
+  {
+    title: 'Manage Address',
+    screen: 'Manage Address',
+  },
+  {
+    title: 'My Rating',
+    screen: 'My Rating',
+  },
+  {
+    title: 'Refer and Earn',
+    screen: 'Refer and Earn',
+  },
+  {
+    title: 'Manage Payment Options',
+    screen: 'Manage Payment Options',
+  },
+  {
+    title: 'Settings',
+    screen: 'Settings',
+  },
+  {
+    title: 'About',
+    screen: 'About',
+  },
+  {
+    title: 'Logout',
+    screen: 'Logout',
+  },
+];
 const Account = () => {
-  //   const navigation = useNavigation();
-  //   useEffect(() => {
-  //     navigation.setOptions({});
-  //   }, []);
-  const options = [
-    {
-      title: 'My Wallet',
-      screen: 'My Wallet',
-    },
-    {
-      title: 'My Booking',
-      screen: 'My Booking',
-    },
-    {
-      title: 'Manage Address',
-      screen: 'Manage Address',
-    },
-    {
-      title: 'My Rating',
-      screen: 'My Rating',
-    },
-    {
-      title: 'Refer and Earn',
-      screen: 'Refer and Earn',
-    },
-    {
-      title: 'Manage Payment Options',
-      screen: 'Manage Payment Options',
-    },
-    {
-      title: 'Settings',
-      screen: 'Settings',
-    },
-    {
-      title: 'About',
-      screen: 'About',
-    },
-  ];
-
+  const dispatch = useAppDispatch();
+  const user = useAppSelector(state => state.userReducer);
   const listRow = ({item, index}: {item: any; index: number}) => {
     return (
-      <TouchableOpacity style={styles.rowContainer}>
+      <TouchableOpacity
+        onPress={() => {
+          if (item.title == 'Logout') dispatch(logout());
+        }}
+        style={styles.rowContainer}>
         <Text style={{flex: 1, ...FONTS.body3, marginLeft: '5%'}}>
           {item.title}
         </Text>
@@ -99,8 +105,8 @@ const Account = () => {
           </View>
 
           <View style={{flex: 1, paddingHorizontal: '5%'}}>
-            <Text style={{...FONTS.body2}}>Verified Customer</Text>
-            <Text>Verified Customer</Text>
+            <Text style={{...FONTS.body2}}>{user.name}</Text>
+            <Text>{user.email}</Text>
           </View>
           <Image
             style={{tintColor: COLORS.gray, height: 30, width: 30}}

@@ -16,9 +16,15 @@ import Carousel from 'react-native-snap-carousel';
 import HeaderComponent from '../../components/Header';
 import {DataSet} from '../../resources';
 import {Banners} from '../../components';
-import {serviceData} from '../../resources/DataSet';
+import {MostBooked, ServiceData, serviceData} from '../../resources/DataSet';
+import MainView from '../../components/MainView';
+import {serviceType} from '../../stateManagemer/models/UserProfileModel';
+import {ACServices} from '../../resources/DataSet';
+import {CarServices} from '../../resources/DataSet';
+import {LaundaryServices} from '../../resources/DataSet';
+import {ELectricianServices} from '../../resources/DataSet';
 
-const Dashboard = () => {
+const Dashboard = ({navigation}: any) => {
   const [item, setItems] = useState(DataSet.OfferData);
 
   const headingComponent = (txt: string) => {
@@ -50,13 +56,22 @@ const Dashboard = () => {
           </TouchableOpacity>
         </View>
         <FlatList
+          showsHorizontalScrollIndicator={false}
           horizontal
           contentContainerStyle={{marginTop: '5%'}}
-          data={serviceData}
+          data={ServiceData}
           // nestedScrollEnabled={true}
           renderItem={({item, index}) => {
             return (
               <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate('ServiceStack', {
+                    screen: 'ServiceDetail',
+                    params: {
+                      data: 'Hahahaha',
+                    },
+                  });
+                }}
                 style={{
                   borderRadius: 10,
                   // borderWidth: 1,
@@ -68,7 +83,7 @@ const Dashboard = () => {
                   source={item?.img}
                 />
                 <Text style={[{textAlign: 'center'}, styles.viewAllTxt]}>
-                  {item.text}
+                  {item.name}
                 </Text>
               </TouchableOpacity>
             );
@@ -97,9 +112,10 @@ const Dashboard = () => {
           </TouchableOpacity>
         </View>
         <FlatList
+          showsHorizontalScrollIndicator={false}
           horizontal
           contentContainerStyle={{marginTop: '5%'}}
-          data={serviceData}
+          data={ServiceData}
           // nestedScrollEnabled={true}
           renderItem={({item, index}) => {
             return (
@@ -115,7 +131,7 @@ const Dashboard = () => {
                   source={item?.img}
                 />
                 <Text style={[{textAlign: 'center'}, styles.viewAllTxt]}>
-                  {item.text}
+                  {item.name}
                 </Text>
               </TouchableOpacity>
             );
@@ -144,9 +160,10 @@ const Dashboard = () => {
           </TouchableOpacity>
         </View>
         <FlatList
+          showsHorizontalScrollIndicator={false}
           horizontal
           contentContainerStyle={{marginTop: '5%'}}
-          data={serviceData}
+          data={MostBooked}
           // nestedScrollEnabled={true}
           renderItem={({item, index}) => {
             return (
@@ -161,9 +178,26 @@ const Dashboard = () => {
                   style={{height: 150, width: 150, borderRadius: 10}}
                   source={item?.img}
                 />
-                <Text style={[styles.serviceText]}>{item.text}</Text>
-                <Text style={{...FONTS.body5}}>Rating : 4.12{'(1.1 M)'}</Text>
-                <Text style={{...FONTS.body5}}>Rs. 542</Text>
+                <Text style={[styles.serviceText]}>{item.name}</Text>
+                <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                  <Image
+                    resizeMode="contain"
+                    style={{
+                      height: 15,
+                      width: 15,
+                      marginRight: 2,
+                      marginLeft: -2,
+                    }}
+                    source={ICONS.STAR_ICON}
+                  />
+                  <Text style={{...FONTS.body5, color: COLORS.gray}}>
+                    {item.rating}
+                  </Text>
+                </View>
+                <Text
+                  style={{...FONTS.body4, color: COLORS.gray, marginLeft: 2}}>
+                  Rs. {item.price}/-
+                </Text>
               </TouchableOpacity>
             );
           }}></FlatList>
@@ -192,11 +226,12 @@ const Dashboard = () => {
         </View>
 
         <FlatList
+          showsHorizontalScrollIndicator={false}
           scrollEnabled={false}
           // horizontal
           numColumns={2}
           contentContainerStyle={{marginTop: '5%'}}
-          data={serviceData}
+          data={MostBooked}
           // nestedScrollEnabled={true}
           renderItem={({item, index}) => {
             return (
@@ -206,6 +241,7 @@ const Dashboard = () => {
                   // borderWidth: 1,
                   // borderColor: COLORS.gray,
                   marginHorizontal: 10,
+                  marginVertical: 10,
                 }}>
                 <Image
                   resizeMode="cover"
@@ -216,9 +252,26 @@ const Dashboard = () => {
                   }}
                   source={item?.img}
                 />
-                <Text style={[styles.serviceText]}>{item.text}</Text>
-                <Text style={{...FONTS.body5}}>Rating : 4.12{'(1.1 M)'}</Text>
-                <Text style={{...FONTS.body5}}>Rs. 542</Text>
+                <Text style={[styles.serviceText]}>{item.name}</Text>
+                <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                  <Image
+                    resizeMode="contain"
+                    style={{
+                      height: 15,
+                      width: 15,
+                      marginRight: 2,
+                      marginLeft: -2,
+                    }}
+                    source={ICONS.STAR_ICON}
+                  />
+                  <Text style={{...FONTS.body5, color: COLORS.gray}}>
+                    {item.rating}
+                  </Text>
+                </View>
+                <Text
+                  style={{...FONTS.body4, color: COLORS.gray, marginLeft: 2}}>
+                  Rs. {item.price}/-
+                </Text>
               </TouchableOpacity>
             );
           }}></FlatList>
@@ -227,6 +280,30 @@ const Dashboard = () => {
   };
 
   const categorySection = (title: string) => {
+    let listData = [];
+    let txt = '';
+    switch (title) {
+      case serviceType.acService + '':
+        listData = ACServices;
+        txt = 'Ac Service';
+        break;
+      case serviceType.carService + '':
+        listData = CarServices;
+        txt = 'Car Service';
+        break;
+      case serviceType.laundryService + '':
+        listData = LaundaryServices;
+        txt = 'Laundary Service';
+        break;
+      case serviceType.electrician + '':
+        listData = ELectricianServices;
+        txt = 'Electrician Service';
+        break;
+      default:
+        listData = ACServices;
+        txt = 'Ac Service';
+    }
+
     return (
       <View
         style={{
@@ -241,15 +318,16 @@ const Dashboard = () => {
             paddingRight: '5%',
             // alignItems: 'center',
           }}>
-          {headingComponent(title)}
+          {headingComponent(txt)}
           <TouchableOpacity style={{marginTop: '7%'}}>
             <Text style={styles.viewAllTxt}>View All</Text>
           </TouchableOpacity>
         </View>
         <FlatList
+          showsHorizontalScrollIndicator={false}
           horizontal
           contentContainerStyle={{marginTop: '5%'}}
-          data={serviceData}
+          data={listData}
           // nestedScrollEnabled={true}
           renderItem={({item, index}) => {
             return (
@@ -264,9 +342,26 @@ const Dashboard = () => {
                   style={{height: 150, width: 150, borderRadius: 10}}
                   source={item?.img}
                 />
-                <Text style={[styles.serviceText]}>{item.text}</Text>
-                <Text style={{...FONTS.body5}}>Rating : 4.12{'(1.1 M)'}</Text>
-                <Text style={{...FONTS.body5}}>Rs. 542</Text>
+                <Text style={[styles.serviceText]}>{item.name}</Text>
+                <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                  <Image
+                    resizeMode="contain"
+                    style={{
+                      height: 15,
+                      width: 15,
+                      marginRight: 2,
+                      // marginLeft: -2,
+                    }}
+                    source={ICONS.STAR_ICON}
+                  />
+                  <Text style={{...FONTS.body5, color: COLORS.gray}}>
+                    {item.rating}
+                  </Text>
+                </View>
+                <Text
+                  style={{...FONTS.body4, color: COLORS.gray, marginLeft: 2}}>
+                  Rs. {item.price}/-
+                </Text>
               </TouchableOpacity>
             );
           }}></FlatList>
@@ -275,12 +370,26 @@ const Dashboard = () => {
   };
 
   return (
-    <ScrollView
-      // nestedScrollEnabled={true}
-      bounces={false}
-      style={styles.container}>
-      <HeaderComponent />
-      <View
+    <MainView isVisible={false}>
+      <ScrollView
+        // nestedScrollEnabled={true}
+        bounces={false}
+        style={styles.container}>
+        <HeaderComponent />
+        <View
+          style={{
+            backgroundColor: 'white',
+            paddingVertical: '5%',
+            marginBottom: '5%',
+          }}>
+          {headingComponent('Offers for you')}
+          <Banners data={item} />
+        </View>
+
+        {categoriesComponent()}
+        {mostBooked()}
+        {TopRated()}
+        {/* <View
         style={{
           backgroundColor: 'white',
           paddingVertical: '5%',
@@ -288,15 +397,12 @@ const Dashboard = () => {
         }}>
         {headingComponent('Offers for you')}
         <Banners data={item} />
-      </View>
-
-      {categoriesComponent()}
-      {mostBooked()}
-      {TopRated()}
-      {categorySection('AC Services')}
-      {recomendedCategoriesComponent()}
-      {categorySection('Quick Home Services')}
-    </ScrollView>
+      </View> */}
+        {categorySection(serviceType.acService + '')}
+        {recomendedCategoriesComponent()}
+        {categorySection(serviceType.carService + '')}
+      </ScrollView>
+    </MainView>
   );
 };
 
@@ -325,7 +431,8 @@ const styles = StyleSheet.create({
     color: COLORS.primary,
   },
   serviceText: {
+    marginTop: 5,
     ...FONTS.body4,
-    // color: COLORS.primary,
+    color: COLORS.primary,
   },
 });

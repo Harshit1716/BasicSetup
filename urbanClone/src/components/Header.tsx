@@ -1,5 +1,6 @@
 import {
   Image,
+  Platform,
   StyleSheet,
   Text,
   TextInput,
@@ -56,7 +57,7 @@ const HeaderComponent = () => {
   return (
     <View
       style={{
-        paddingTop: '13%',
+        paddingTop: Platform.OS == 'ios' ? '13%' : '5%',
         paddingBottom: '5%',
         // height: '20%',
         width: '100%',
