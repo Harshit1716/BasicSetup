@@ -22,3 +22,10 @@ export interface OrderType {
   serviceDate: Date;
   serviceId: number;
 }
+
+export interface AddOrderType {
+  orderAmount: number;
+  serviceType: serviceType;
+  serviceName: string;
+  serviceId: number;
+}

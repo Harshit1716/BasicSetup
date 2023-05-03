@@ -23,9 +23,11 @@ import {ACServices} from '../../resources/DataSet';
 import {CarServices} from '../../resources/DataSet';
 import {LaundaryServices} from '../../resources/DataSet';
 import {ELectricianServices} from '../../resources/DataSet';
+import {useAppSelector} from '../../stateManagemer/Store';
 
 const Dashboard = ({navigation}: any) => {
   const [item, setItems] = useState(DataSet.OfferData);
+  const cart = useAppSelector(state => state.userReducer.cart);
 
   const headingComponent = (txt: string) => {
     return (
@@ -401,6 +403,9 @@ const Dashboard = ({navigation}: any) => {
         {categorySection(serviceType.acService + '')}
         {recomendedCategoriesComponent()}
         {categorySection(serviceType.carService + '')}
+        {(cart?.totalAmount ?? 0) > 0 && (
+          <View style={{height: SIZES.height * 0.1, width: '100%'}}></View>
+        )}
       </ScrollView>
     </MainView>
   );

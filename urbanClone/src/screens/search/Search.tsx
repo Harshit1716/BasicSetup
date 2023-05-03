@@ -15,8 +15,17 @@ import {
   ELectricianServices,
   LaundaryServices,
 } from '../../resources/DataSet';
+import {useAppDispatch, useAppSelector} from '../../stateManagemer/Store';
+import {addToCart} from '../../stateManagemer/slice/UserSlice';
+import {
+  AddOrderType,
+  OrderType,
+} from '../../stateManagemer/models/UserProfileModel';
+import MainView from '../../components/MainView';
 
 const Search = () => {
+  const dispatch = useAppDispatch();
+  const cart = useAppSelector(state => state.userReducer.cart);
   const searchBar = () => {
     return (
       <View
@@ -100,7 +109,16 @@ const Search = () => {
   const renderServiceItem = ({item, index}: any) => {
     return (
       <TouchableOpacity
-        onPress={() => console.log(item)}
+        onPress={() => {
+          // console.log(item.)
+          const data: AddOrderType = {
+            orderAmount: item?.price,
+            serviceType: item?.type,
+            serviceName: item?.name,
+            serviceId: item?.serviceId,
+          };
+          dispatch(addToCart(data));
+        }}
         style={{
           borderBottomWidth: 1,
           borderBottomColor: COLORS.lightGray,
@@ -217,16 +235,28 @@ const Search = () => {
             ...ELectricianServices,
           ]}
           renderItem={renderServiceItem}
+          ListFooterComponent={() => {
+            return (
+              <>
+                {(cart?.totalAmount ?? 0) > 0 && (
+                  <View
+                    style={{height: SIZES.height * 0.15, width: '100%'}}></View>
+                )}
+              </>
+            );
+          }}
         />
       </View>
     );
   };
   return (
-    <View style={{flex: 1, paddingTop: '10%', backgroundColor: COLORS.white}}>
-      {searchBar()}
-      {selectorBtn()}
-      {serviceRow()}
-    </View>
+    <MainView>
+      <View style={{flex: 1, paddingTop: '10%', backgroundColor: COLORS.white}}>
+        {searchBar()}
+        {selectorBtn()}
+        {serviceRow()}
+      </View>
+    </MainView>
   );
 };
 
