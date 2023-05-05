@@ -70,7 +70,7 @@ const Dashboard = ({navigation}: any) => {
                   navigation.navigate('ServiceStack', {
                     screen: 'ServiceDetail',
                     params: {
-                      data: 'Hahahaha',
+                      data: item,
                     },
                   });
                 }}
@@ -122,6 +122,14 @@ const Dashboard = ({navigation}: any) => {
           renderItem={({item, index}) => {
             return (
               <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate('ServiceStack', {
+                    screen: 'ServiceDetail',
+                    params: {
+                      data: item,
+                    },
+                  });
+                }}
                 style={{
                   borderRadius: 10,
                   // borderWidth: 1,

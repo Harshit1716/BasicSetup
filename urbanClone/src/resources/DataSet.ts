@@ -60,6 +60,12 @@ const ACServices = [
     price: 450,
     rating: '4.12 (1.1 M)',
     img: ICONS.AC_SERVICE_ICON,
+    details: [
+      '100% colophony free',
+      '100% colophony free',
+      '100% colophony free',
+      '100% colophony free',
+    ],
     reviews: [{review: 'great service', email: 'hahaha@yopmail.com'}],
   },
   {
@@ -69,6 +75,12 @@ const ACServices = [
     price: 600,
     rating: '4.12 (1.1 M)',
     img: ICONS.AC_SERVICE_ICON,
+    details: [
+      '100% colophony free',
+      '100% colophony free',
+      '100% colophony free',
+      '100% colophony free',
+    ],
     reviews: [{review: 'great service', email: 'hahaha@yopmail.com'}],
   },
   {
@@ -78,6 +90,12 @@ const ACServices = [
     price: 1500,
     rating: '4.12 (1.1 M)',
     img: ICONS.AC_SERVICE_ICON,
+    details: [
+      '100% colophony free',
+      '100% colophony free',
+      '100% colophony free',
+      '100% colophony free',
+    ],
     reviews: [{review: 'great service', email: 'hahaha@yopmail.com'}],
   },
   {
@@ -87,6 +105,12 @@ const ACServices = [
     price: 700,
     rating: '4.12 (1.1 M)',
     img: ICONS.AC_SERVICE_ICON,
+    details: [
+      '100% colophony free',
+      '100% colophony free',
+      '100% colophony free',
+      '100% colophony free',
+    ],
     reviews: [{review: 'great service', email: 'hahaha@yopmail.com'}],
   },
   {
@@ -96,6 +120,12 @@ const ACServices = [
     price: 700,
     rating: '4.12 (1.1 M)',
     img: ICONS.AC_SERVICE_ICON,
+    details: [
+      '100% colophony free',
+      '100% colophony free',
+      '100% colophony free',
+      '100% colophony free',
+    ],
     reviews: [{review: 'great service', email: 'hahaha@yopmail.com'}],
   },
 ];
@@ -108,6 +138,12 @@ const CarServices = [
     price: 1000,
     rating: '4.12 (1.1 M)',
     img: ICONS.CAR_SERVICE_ICON,
+    details: [
+      '100% colophony free',
+      '100% colophony free',
+      '100% colophony free',
+      '100% colophony free',
+    ],
     reviews: [{review: 'great service', email: 'hahaha@yopmail.com'}],
   },
   {
@@ -117,6 +153,12 @@ const CarServices = [
     price: 150,
     rating: '4.12 (1.1 M)',
     img: ICONS.CAR_SERVICE_ICON,
+    details: [
+      '100% colophony free',
+      '100% colophony free',
+      '100% colophony free',
+      '100% colophony free',
+    ],
     reviews: [{review: 'great service', email: 'hahaha@yopmail.com'}],
   },
   {
@@ -126,6 +168,12 @@ const CarServices = [
     price: 1500,
     rating: '4.12 (1.1 M)',
     img: ICONS.CAR_SERVICE_ICON,
+    details: [
+      '100% colophony free',
+      '100% colophony free',
+      '100% colophony free',
+      '100% colophony free',
+    ],
     reviews: [{review: 'great service', email: 'hahaha@yopmail.com'}],
   },
   {
@@ -135,6 +183,12 @@ const CarServices = [
     price: 10000,
     rating: '4.12 (1.1 M)',
     img: ICONS.CAR_SERVICE_ICON,
+    details: [
+      '100% colophony free',
+      '100% colophony free',
+      '100% colophony free',
+      '100% colophony free',
+    ],
     reviews: [{review: 'great service', email: 'hahaha@yopmail.com'}],
   },
 ];
@@ -146,6 +200,12 @@ const ELectricianServices = [
     price: 1000,
     rating: '4.12 (1.1 M)',
     img: ICONS.ELECTRICIAN_SERVICE_ICON,
+    details: [
+      '100% colophony free',
+      '100% colophony free',
+      '100% colophony free',
+      '100% colophony free',
+    ],
     reviews: [{review: 'great service', email: 'hahaha@yopmail.com'}],
   },
   {
@@ -155,6 +215,12 @@ const ELectricianServices = [
     price: 1500,
     rating: '4.12 (1.1 M)',
     img: ICONS.ELECTRICIAN_SERVICE_ICON,
+    details: [
+      '100% colophony free',
+      '100% colophony free',
+      '100% colophony free',
+      '100% colophony free',
+    ],
     reviews: [{review: 'great service', email: 'hahaha@yopmail.com'}],
   },
   {
@@ -164,6 +230,12 @@ const ELectricianServices = [
     price: 1500,
     rating: '4.12 (1.1 M)',
     img: ICONS.ELECTRICIAN_SERVICE_ICON,
+    details: [
+      '100% colophony free',
+      '100% colophony free',
+      '100% colophony free',
+      '100% colophony free',
+    ],
     reviews: [{review: 'great service', email: 'hahaha@yopmail.com'}],
   },
   {
@@ -173,6 +245,12 @@ const ELectricianServices = [
     price: 10000,
     rating: '4.12 (1.1 M)',
     img: ICONS.ELECTRICIAN_SERVICE_ICON,
+    details: [
+      '100% colophony free',
+      '100% colophony free',
+      '100% colophony free',
+      '100% colophony free',
+    ],
     reviews: [{review: 'great service', email: 'hahaha@yopmail.com'}],
   },
 ];
@@ -184,6 +262,12 @@ const LaundaryServices = [
     price: 2000,
     rating: '4.12 (1.1 M)',
     img: ICONS.WASHING_ICON,
+    details: [
+      '100% colophony free',
+      '100% colophony free',
+      '100% colophony free',
+      '100% colophony free',
+    ],
     reviews: [{review: 'great service', email: 'hahaha@yopmail.com'}],
   },
   {
@@ -193,6 +277,12 @@ const LaundaryServices = [
     price: 120,
     rating: '4.12 (1.1 M)',
     img: ICONS.WASHING_ICON,
+    details: [
+      '100% colophony free',
+      '100% colophony free',
+      '100% colophony free',
+      '100% colophony free',
+    ],
     reviews: [{review: 'great service', email: 'hahaha@yopmail.com'}],
   },
   {
@@ -202,6 +292,12 @@ const LaundaryServices = [
     price: 1500,
     rating: '4.12 (1.1 M)',
     img: ICONS.WASHING_ICON,
+    details: [
+      '100% colophony free',
+      '100% colophony free',
+      '100% colophony free',
+      '100% colophony free',
+    ],
     reviews: [{review: 'great service', email: 'hahaha@yopmail.com'}],
   },
   {
@@ -211,9 +307,16 @@ const LaundaryServices = [
     price: 700,
     rating: '4.12 (1.1 M)',
     img: ICONS.WASHING_ICON,
+    details: [
+      '100% colophony free',
+      '100% colophony free',
+      '100% colophony free',
+      '100% colophony free',
+    ],
     reviews: [{review: 'great service', email: 'hahaha@yopmail.com'}],
   },
 ];
+
 const MostBooked = [
   ACServices[0],
   LaundaryServices[0],
@@ -222,18 +325,24 @@ const MostBooked = [
   ACServices[3],
   CarServices[3],
 ];
+
 const ServiceData = [
   {
     type: serviceType.acService,
     name: 'AC Service',
     services: ACServices,
+    timeToReach: '45 min',
     img: ICONS.AC_SERVICE_ICON,
+    rating: '4.12 (1.1 M)',
+    rate: '12',
     key: 1,
   },
   {
     type: serviceType.carService,
     name: 'Car Service',
     services: CarServices,
+    timeToReach: '1 hour',
+    rating: '4.12 (1.1 M)',
     img: ICONS.CAR_SERVICE_ICON,
     key: 2,
   },
@@ -241,13 +350,17 @@ const ServiceData = [
     type: serviceType.electrician,
     name: 'ELectrician',
     services: ELectricianServices,
+    timeToReach: '30 min',
+    rating: '4.12 (1.1 M)',
     img: ICONS.ELECTRICIAN_SERVICE_ICON,
     key: 3,
   },
   {
     type: serviceType.laundryService,
     name: 'Laundary Service',
+    timeToReach: '55 min',
     services: LaundaryServices,
+    rating: '4.12 (1.1 M)',
     img: ICONS.WASHING_ICON,
     key: 4,
   },

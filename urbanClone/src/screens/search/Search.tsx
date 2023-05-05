@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {SearchComponent} from '../../components/Header';
 import {COLORS, FONTS, ICONS, SHADOW, SIZES} from '../../resources';
 import {
@@ -14,6 +14,7 @@ import {
   CarServices,
   ELectricianServices,
   LaundaryServices,
+  ServiceData,
 } from '../../resources/DataSet';
 import {useAppDispatch, useAppSelector} from '../../stateManagemer/Store';
 import {addToCart} from '../../stateManagemer/slice/UserSlice';
@@ -26,6 +27,28 @@ import MainView from '../../components/MainView';
 const Search = () => {
   const dispatch = useAppDispatch();
   const cart = useAppSelector(state => state.userReducer.cart);
+  const [txt, setTxt] = useState<string>('');
+  const [list, setList] = useState([
+    ...ACServices,
+    ...LaundaryServices,
+    ...CarServices,
+    ...ELectricianServices,
+  ]);
+  const [filteredList, setFilteredList] = useState([
+    ...ACServices,
+    ...LaundaryServices,
+    ...CarServices,
+    ...ELectricianServices,
+  ]);
+
+  // useEffect(() => {}, []);
+
+  const handleChange = (text: string) => {
+    setTxt(text);
+    let ar = list.filter(item => item.name.includes(text));
+    setFilteredList(ar);
+  };
+
   const searchBar = () => {
     return (
       <View
@@ -34,7 +57,7 @@ const Search = () => {
           alignItems: 'center',
         }}>
         <View style={{width: '85%'}}>
-          <SearchComponent />
+          <SearchComponent value={txt} onChangeText={handleChange} />
         </View>
         <TouchableOpacity style={{marginTop: '5%'}}>
           <Image style={{height: 40, width: 40}} source={ICONS.FILTER_ICON} />
@@ -228,12 +251,7 @@ const Search = () => {
     return (
       <View style={{paddingHorizontal: '5%', paddingTop: '5%', flex: 1}}>
         <FlatList
-          data={[
-            ...ACServices,
-            ...LaundaryServices,
-            ...CarServices,
-            ...ELectricianServices,
-          ]}
+          data={filteredList}
           renderItem={renderServiceItem}
           ListFooterComponent={() => {
             return (

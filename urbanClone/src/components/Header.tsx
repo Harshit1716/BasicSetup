@@ -10,7 +10,12 @@ import {
 import React from 'react';
 import {COLORS, FONTS, ICONS, SIZES} from '../resources';
 
-export const SearchComponent = () => {
+interface SearchProps {
+  value: string;
+  onChangeText: (text: string) => void;
+}
+
+export const SearchComponent = (props: SearchProps) => {
   return (
     <View
       style={{

@@ -11,9 +11,24 @@ import {
 } from 'react-native';
 import React, {useState} from 'react';
 import {COLORS, FONTS, ICONS, SHADOW, SIZES} from '../../resources';
-import ReactNativeModal from 'react-native-modal';
+import {ACServices, ServiceData} from '../../resources/DataSet';
+import {useAppDispatch, useAppSelector} from '../../stateManagemer/Store';
+import {AddOrderType} from '../../stateManagemer/models/UserProfileModel';
+import {addToCart} from '../../stateManagemer/slice/UserSlice';
+import MainView from '../../components/MainView';
 
-const ServiceDetail = (params: any) => {
+const ServiceDetail = (props: any) => {
+  const dispatch = useAppDispatch();
+  const [data, setData] = useState<(typeof ServiceData)[0]>();
+  const cart = useAppSelector(state => state.userReducer.cart);
+  React.useEffect(() => {
+    setData(props.route?.params?.data);
+  }, [props.route.params]);
+
+  React.useEffect(() => {
+    console.log(data, 'DATA');
+  }, [data]);
+
   const serviceHeader = () => {
     return (
       <View style={{padding: '5%', backgroundColor: COLORS.white}}>
@@ -30,7 +45,7 @@ const ServiceDetail = (params: any) => {
             source={ICONS.STAR_ICON}
           />
           <Text style={{...FONTS.body3, color: COLORS.black}}>
-            4.12{'(1.1 M Booking)'}
+            {data?.rating} {'(1.1 M Booking)'}
           </Text>
         </View>
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
@@ -44,7 +59,7 @@ const ServiceDetail = (params: any) => {
             source={ICONS.CLOCK_ICON}
           />
           <Text style={{...FONTS.body3, color: COLORS.black}}>
-            4.12{'(1.1 M Booking)'}
+            {data?.timeToReach}
           </Text>
         </View>
         <View style={{marginTop: 30, marginBottom: 10}}>
@@ -103,7 +118,7 @@ const ServiceDetail = (params: any) => {
         <FlatList
           nestedScrollEnabled={true}
           numColumns={3}
-          data={[1, 2, 3, 4, 5, 6]}
+          data={data?.services}
           renderItem={({item, index}) => {
             return (
               <View style={{margin: 15}}>
@@ -113,16 +128,12 @@ const ServiceDetail = (params: any) => {
                     width: SIZES.width * 0.25,
                     borderRadius: 10,
                   }}
-                  source={
-                    index % 2 == 0
-                      ? ICONS.ELECTRICIAN_SERVICE_ICON
-                      : ICONS.AC_SERVICE_ICON
-                  }
+                  source={item.img}
                 />
                 <Text
                   numberOfLines={3}
                   style={{alignSelf: 'center', ...FONTS.body4, width: 80}}>
-                  Car service
+                  {item.name}
                 </Text>
               </View>
             );
@@ -148,7 +159,7 @@ const ServiceDetail = (params: any) => {
           }}>
           <View style={{flex: 1}}>
             <Text numberOfLines={2} style={{...FONTS.h3, marginBottom: '2%'}}>
-              Car Cleaning Service{' '}
+              {item.name}
             </Text>
             <View
               style={{
@@ -163,7 +174,7 @@ const ServiceDetail = (params: any) => {
               <Text
                 numberOfLines={2}
                 style={{...FONTS.body4, color: COLORS.gray}}>
-                4.80 (36.7K)
+                {item.rating}
               </Text>
             </View>
             <View style={{width: '100%'}}>
@@ -176,37 +187,27 @@ const ServiceDetail = (params: any) => {
                 // paddingVertical: '3%',
                 paddingRight: '3%',
               }}>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  left: -10,
-                }}>
-                <Image
-                  resizeMode="contain"
-                  style={{height: 25, width: 25}}
-                  source={ICONS.DOT_ICON}
-                />
-                <Text
-                  numberOfLines={1}
-                  style={{...FONTS.body4, color: COLORS.gray}}>
-                  100% colophony free
-                </Text>
-              </View>
-
-              <View
-                style={{flexDirection: 'row', alignItems: 'center', left: -10}}>
-                <Image
-                  resizeMode="contain"
-                  style={{height: 25, width: 25}}
-                  source={ICONS.DOT_ICON}
-                />
-                <Text
-                  numberOfLines={1}
-                  style={{...FONTS.body4, color: COLORS.gray}}>
-                  100% colophony free
-                </Text>
-              </View>
+              {(item?.details ?? []).map(detail => {
+                return (
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      left: -10,
+                    }}>
+                    <Image
+                      resizeMode="contain"
+                      style={{height: 25, width: 25}}
+                      source={ICONS.DOT_ICON}
+                    />
+                    <Text
+                      numberOfLines={1}
+                      style={{...FONTS.body4, color: COLORS.gray}}>
+                      {detail}
+                    </Text>
+                  </View>
+                );
+              })}
             </View>
           </View>
           <View style={{alignSelf: 'flex-start'}}>
@@ -220,6 +221,16 @@ const ServiceDetail = (params: any) => {
               source={ICONS.AC_SERVICE_ICON}
             />
             <TouchableOpacity
+              onPress={() => {
+                // console.log(item.)
+                const data: AddOrderType = {
+                  orderAmount: item?.price,
+                  serviceType: item?.type,
+                  serviceName: item?.name,
+                  serviceId: item?.serviceId,
+                };
+                dispatch(addToCart(data));
+              }}
               style={{
                 backgroundColor: 'white',
                 top: -10,
@@ -241,6 +252,9 @@ const ServiceDetail = (params: any) => {
             </TouchableOpacity>
           </View>
         </View>
+        <Text style={{...FONTS.h3, color: COLORS.primary, marginBottom: '2%'}}>
+          Rs. {item.price}/-
+        </Text>
         <TouchableOpacity>
           <Text style={{...FONTS.h3, color: COLORS.primary}}>
             View Details {'->'}
@@ -261,14 +275,24 @@ const ServiceDetail = (params: any) => {
         }}>
         <FlatList
           nestedScrollEnabled={true}
-          data={[1, 2, 3, 4, 5]}
+          data={data?.services}
           renderItem={renderServiceItem}
+          ListFooterComponent={() => {
+            return (
+              <>
+                {(cart?.totalAmount ?? 0) > 0 && (
+                  <View
+                    style={{height: SIZES.height * 0.15, width: '100%'}}></View>
+                )}
+              </>
+            );
+          }}
         />
       </View>
     );
   };
   return (
-    <View style={{flex: 1}}>
+    <MainView>
       <ScrollView
         bounces={false}
         nestedScrollEnabled={true}
@@ -287,7 +311,7 @@ const ServiceDetail = (params: any) => {
         {subServices()}
         {serviceRow()}
       </ScrollView>
-    </View>
+    </MainView>
   );
 };
 
