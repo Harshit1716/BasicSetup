@@ -2,6 +2,7 @@ import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import {COLORS, FONTS, ICONS, SHADOW, SIZES} from '../resources';
 import {useAppSelector} from '../stateManagemer/Store';
+import {useNavigation} from '@react-navigation/native';
 
 interface MainViewTypes {
   style?: any;
@@ -10,6 +11,8 @@ interface MainViewTypes {
 }
 
 const MainView = (props: any) => {
+  // console.log(props);
+  const navigation = useNavigation();
   const cart = useAppSelector(state => state.userReducer.cart);
   return (
     <View style={styles.container}>
@@ -37,13 +40,19 @@ const MainView = (props: any) => {
           <View style={{borderRadius: 20}}>
             <Text style={{...FONTS.h3}}>Total amount</Text>
             <Text style={{...FONTS.body3, marginTop: '3%'}}>
-              Rs. {cart.totalAmount} /-
+              Rs. {cart?.totalAmount} /-
             </Text>
           </View>
           <View style={{flex: 1}}>
             <TouchableOpacity
               style={[styles.loginBtn]}
               onPress={() => {
+                navigation.navigate('Cart', {
+                  screen: 'ServiceDetail',
+                  params: {
+                    // data: item,
+                  },
+                });
                 // const data = {
                 //   email: 'harry@yopmail.com',
                 //   name: 'Harry Potter',

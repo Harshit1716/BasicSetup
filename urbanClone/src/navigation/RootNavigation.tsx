@@ -2,7 +2,7 @@ import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {Dashboard, Home, OnBoarding} from '../screens';
+import {Cart, Dashboard, Home, OnBoarding} from '../screens';
 import BottomTab from './BottomTabs';
 import ServiceStack from './ServiceStack';
 import {useAppSelector} from '../stateManagemer/Store';
@@ -36,6 +36,15 @@ const RootNavigation = () => {
           <RootStack.Screen
             name="ServiceStack"
             component={ServiceStack}
+            options={{
+              headerShown: false,
+            }}
+          />
+        )}
+        {!(email == '') && (
+          <RootStack.Screen
+            name="Cart"
+            component={Cart}
             options={{
               headerShown: false,
             }}
