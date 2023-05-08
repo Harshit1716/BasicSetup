@@ -11,24 +11,28 @@ import {
   View,
 } from 'react-native';
 import React, {useCallback, useRef, useState} from 'react';
-import {COLORS, FONTS, ICONS, SIZES} from '../../resources';
+import {COLORS, FONTS, ICONS, SHADOW, SIZES} from '../../resources';
 import Carousel from 'react-native-snap-carousel';
 import HeaderComponent from '../../components/Header';
 import {DataSet} from '../../resources';
 import {Banners} from '../../components';
 import {MostBooked, ServiceData, serviceData} from '../../resources/DataSet';
 import MainView from '../../components/MainView';
-import {serviceType} from '../../stateManagemer/models/UserProfileModel';
+import {
+  AddOrderType,
+  serviceType,
+} from '../../stateManagemer/models/UserProfileModel';
 import {ACServices} from '../../resources/DataSet';
 import {CarServices} from '../../resources/DataSet';
 import {LaundaryServices} from '../../resources/DataSet';
 import {ELectricianServices} from '../../resources/DataSet';
-import {useAppSelector} from '../../stateManagemer/Store';
+import {useAppDispatch, useAppSelector} from '../../stateManagemer/Store';
+import {addToCart} from '../../stateManagemer/slice/UserSlice';
 
 const Dashboard = ({navigation}: any) => {
   const [item, setItems] = useState(DataSet.OfferData);
   const cart = useAppSelector(state => state.userReducer.cart);
-
+  const dispatch = useAppDispatch();
   const headingComponent = (txt: string) => {
     return (
       <>
@@ -42,7 +46,7 @@ const Dashboard = ({navigation}: any) => {
       <View
         style={{
           backgroundColor: 'white',
-          paddingVertical: '5%',
+          paddingVertical: '3%',
           marginBottom: '5%',
         }}>
         <View
@@ -98,7 +102,7 @@ const Dashboard = ({navigation}: any) => {
       <View
         style={{
           backgroundColor: 'white',
-          paddingVertical: '5%',
+          paddingVertical: '3%',
           marginBottom: '5%',
         }}>
         <View
@@ -149,12 +153,13 @@ const Dashboard = ({navigation}: any) => {
       </View>
     );
   };
+
   const mostBooked = () => {
     return (
       <View
         style={{
           backgroundColor: 'white',
-          paddingVertical: '5%',
+          paddingVertical: '3%',
           marginBottom: '5%',
         }}>
         <View
@@ -177,7 +182,7 @@ const Dashboard = ({navigation}: any) => {
           // nestedScrollEnabled={true}
           renderItem={({item, index}) => {
             return (
-              <TouchableOpacity
+              <View
                 style={{
                   borderRadius: 10,
                   // borderWidth: 1,
@@ -205,10 +210,44 @@ const Dashboard = ({navigation}: any) => {
                   </Text>
                 </View>
                 <Text
-                  style={{...FONTS.body4, color: COLORS.gray, marginLeft: 2}}>
+                  style={{
+                    ...FONTS.body4,
+                    color: COLORS.gray,
+                    marginLeft: 2,
+                    marginBottom: 5,
+                  }}>
                   Rs. {item.price}/-
                 </Text>
-              </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => {
+                    // console.log(item.)
+                    const data: AddOrderType = {
+                      orderAmount: item?.price,
+                      serviceType: item?.type,
+                      serviceName: item?.name,
+                      serviceId: item?.serviceID,
+                    };
+                    dispatch(addToCart(data));
+                  }}
+                  style={{
+                    backgroundColor: 'white',
+                    borderWidth: 1,
+                    padding: '3%',
+                    width: '70%',
+                    // alignSelf: 'center',
+                    borderRadius: 5,
+                    ...SHADOW,
+                  }}>
+                  <Text
+                    style={{
+                      alignSelf: 'center',
+                      ...FONTS.body4,
+                      color: COLORS.primary,
+                    }}>
+                    Add
+                  </Text>
+                </TouchableOpacity>
+              </View>
             );
           }}></FlatList>
       </View>
@@ -219,7 +258,7 @@ const Dashboard = ({navigation}: any) => {
       <View
         style={{
           backgroundColor: 'white',
-          paddingVertical: '5%',
+          paddingVertical: '3%',
           marginBottom: '5%',
         }}>
         <View
@@ -245,7 +284,7 @@ const Dashboard = ({navigation}: any) => {
           // nestedScrollEnabled={true}
           renderItem={({item, index}) => {
             return (
-              <TouchableOpacity
+              <View
                 style={{
                   borderRadius: 10,
                   // borderWidth: 1,
@@ -279,10 +318,44 @@ const Dashboard = ({navigation}: any) => {
                   </Text>
                 </View>
                 <Text
-                  style={{...FONTS.body4, color: COLORS.gray, marginLeft: 2}}>
+                  style={{
+                    ...FONTS.body4,
+                    color: COLORS.gray,
+                    marginLeft: 2,
+                    marginBottom: 5,
+                  }}>
                   Rs. {item.price}/-
                 </Text>
-              </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => {
+                    // console.log(item.)
+                    const data: AddOrderType = {
+                      orderAmount: item?.price,
+                      serviceType: item?.type,
+                      serviceName: item?.name,
+                      serviceId: item?.serviceID,
+                    };
+                    dispatch(addToCart(data));
+                  }}
+                  style={{
+                    backgroundColor: 'white',
+                    borderWidth: 1,
+                    padding: '3%',
+                    width: '70%',
+                    // alignSelf: 'center',
+                    borderRadius: 5,
+                    ...SHADOW,
+                  }}>
+                  <Text
+                    style={{
+                      alignSelf: 'center',
+                      ...FONTS.body4,
+                      color: COLORS.primary,
+                    }}>
+                    Add
+                  </Text>
+                </TouchableOpacity>
+              </View>
             );
           }}></FlatList>
       </View>
@@ -318,7 +391,7 @@ const Dashboard = ({navigation}: any) => {
       <View
         style={{
           backgroundColor: 'white',
-          paddingVertical: '5%',
+          paddingVertical: '3%',
           marginBottom: '5%',
         }}>
         <View
@@ -341,7 +414,7 @@ const Dashboard = ({navigation}: any) => {
           // nestedScrollEnabled={true}
           renderItem={({item, index}) => {
             return (
-              <TouchableOpacity
+              <View
                 style={{
                   borderRadius: 10,
                   // borderWidth: 1,
@@ -369,10 +442,44 @@ const Dashboard = ({navigation}: any) => {
                   </Text>
                 </View>
                 <Text
-                  style={{...FONTS.body4, color: COLORS.gray, marginLeft: 2}}>
+                  style={{
+                    ...FONTS.body4,
+                    color: COLORS.gray,
+                    marginLeft: 2,
+                    marginBottom: 5,
+                  }}>
                   Rs. {item.price}/-
                 </Text>
-              </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => {
+                    // console.log(item.)
+                    const data: AddOrderType = {
+                      orderAmount: item?.price,
+                      serviceType: item?.type,
+                      serviceName: item?.name,
+                      serviceId: item?.serviceID,
+                    };
+                    dispatch(addToCart(data));
+                  }}
+                  style={{
+                    backgroundColor: 'white',
+                    borderWidth: 1,
+                    padding: '3%',
+                    width: '70%',
+                    // alignSelf: 'center',
+                    borderRadius: 5,
+                    ...SHADOW,
+                  }}>
+                  <Text
+                    style={{
+                      alignSelf: 'center',
+                      ...FONTS.body4,
+                      color: COLORS.primary,
+                    }}>
+                    Add
+                  </Text>
+                </TouchableOpacity>
+              </View>
             );
           }}></FlatList>
       </View>
@@ -389,7 +496,7 @@ const Dashboard = ({navigation}: any) => {
         <View
           style={{
             backgroundColor: 'white',
-            paddingVertical: '5%',
+            paddingVertical: '3%',
             marginBottom: '5%',
           }}>
           {headingComponent('Offers for you')}

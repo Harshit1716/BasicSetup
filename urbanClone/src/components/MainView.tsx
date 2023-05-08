@@ -83,12 +83,12 @@ const styles = StyleSheet.create({
     // backgroundColor: 'red',
   },
   loginBtn: {
-    padding: 20,
+    padding: 10,
     width: '80%',
     // justifyContent: 'center',
     // alignItems: 'center',
     alignSelf: 'flex-end',
-    borderRadius: 20,
+    borderRadius: 10,
     backgroundColor: COLORS.primary,
   },
 });

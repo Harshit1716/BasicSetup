@@ -1,6 +1,7 @@
 import {
   FlatList,
   Image,
+  Platform,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -131,17 +132,7 @@ const Search = () => {
   };
   const renderServiceItem = ({item, index}: any) => {
     return (
-      <TouchableOpacity
-        onPress={() => {
-          // console.log(item.)
-          const data: AddOrderType = {
-            orderAmount: item?.price,
-            serviceType: item?.type,
-            serviceName: item?.name,
-            serviceId: item?.serviceId,
-          };
-          dispatch(addToCart(data));
-        }}
+      <View
         style={{
           borderBottomWidth: 1,
           borderBottomColor: COLORS.lightGray,
@@ -177,40 +168,43 @@ const Search = () => {
           </View>
           <View
             style={{
-              // paddingVertical: '3%',
               paddingRight: '3%',
             }}>
             <View
               style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                left: -10,
+                // paddingVertical: '3%',
+                paddingRight: '3%',
               }}>
-              <Image
-                resizeMode="contain"
-                style={{height: 25, width: 25}}
-                source={ICONS.DOT_ICON}
-              />
-              <Text
-                numberOfLines={1}
-                style={{...FONTS.body4, color: COLORS.gray}}>
-                100% colophony free
-              </Text>
+              {(item?.details ?? []).map(detail => {
+                return (
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      left: -10,
+                    }}>
+                    <Image
+                      resizeMode="contain"
+                      style={{height: 25, width: 25}}
+                      source={ICONS.DOT_ICON}
+                    />
+                    <Text
+                      numberOfLines={1}
+                      style={{...FONTS.body4, color: COLORS.gray}}>
+                      {detail}
+                    </Text>
+                  </View>
+                );
+              })}
             </View>
-
-            <View
-              style={{flexDirection: 'row', alignItems: 'center', left: -10}}>
-              <Image
-                resizeMode="contain"
-                style={{height: 25, width: 25}}
-                source={ICONS.DOT_ICON}
-              />
-              <Text
-                numberOfLines={1}
-                style={{...FONTS.body4, color: COLORS.gray}}>
-                100% colophony free
-              </Text>
-            </View>
+            <Text
+              style={{
+                ...FONTS.h3,
+                color: COLORS.primary,
+                marginVertical: '2%',
+              }}>
+              Rs. {item.price}/-
+            </Text>
           </View>
         </View>
         <View style={{alignSelf: 'flex-start'}}>
@@ -223,7 +217,17 @@ const Search = () => {
             }}
             source={ICONS.AC_SERVICE_ICON}
           />
-          <View
+          <TouchableOpacity
+            onPress={() => {
+              // console.log(item.)
+              const data: AddOrderType = {
+                orderAmount: item?.price,
+                serviceType: item?.type,
+                serviceName: item?.name,
+                serviceId: item?.serviceId,
+              };
+              dispatch(addToCart(data));
+            }}
             style={{
               backgroundColor: 'white',
               top: -10,
@@ -242,9 +246,9 @@ const Search = () => {
               }}>
               Add
             </Text>
-          </View>
+          </TouchableOpacity>
         </View>
-      </TouchableOpacity>
+      </View>
     );
   };
   const serviceRow = () => {
@@ -269,7 +273,12 @@ const Search = () => {
   };
   return (
     <MainView>
-      <View style={{flex: 1, paddingTop: '10%', backgroundColor: COLORS.white}}>
+      <View
+        style={{
+          flex: 1,
+          paddingTop: Platform.OS == 'android' ? '2%' : '10%',
+          backgroundColor: COLORS.white,
+        }}>
         {searchBar()}
         {selectorBtn()}
         {serviceRow()}

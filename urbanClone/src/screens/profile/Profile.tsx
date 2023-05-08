@@ -84,11 +84,23 @@ const ProfileScreen = () => {
             placeholder="Phone"
             placeholderTextColor="#C4C4C4"
           />
-          <TouchableOpacity
-            style={styles.saveButton}
-            onPress={handleSaveProfile}>
-            <Text style={styles.saveButtonText}>Save</Text>
-          </TouchableOpacity>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              marginTop: 10,
+            }}>
+            <TouchableOpacity
+              style={styles.saveButton}
+              onPress={handleSaveProfile}>
+              <Text style={styles.saveButtonText}>Cancel</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.saveButton}
+              onPress={handleSaveProfile}>
+              <Text style={styles.saveButtonText}>Save</Text>
+            </TouchableOpacity>
+          </View>
         </ScrollView>
       </Modal>
     </View>
@@ -174,7 +186,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   saveButton: {
-    backgroundColor: '#FDB813',
+    backgroundColor: COLORS.primary,
     paddingVertical: 12,
     paddingHorizontal: 16,
     borderRadius: 8,
@@ -195,6 +207,7 @@ const styles = StyleSheet.create({
     width: 150,
     marginTop: '10%',
     height: 150,
+    backgroundColor: COLORS.lightGray,
     borderRadius: 75,
     marginBottom: 8,
   },

@@ -1,4 +1,11 @@
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {
+  Image,
+  Platform,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React from 'react';
 import Carousel from 'react-native-snap-carousel';
 import {SIZES} from '../resources';
@@ -12,7 +19,7 @@ const Banners = (Props: BannerProps) => {
       <TouchableOpacity
         style={{
           marginLeft: '-10%',
-          // marginRight: index == 0 ? '-10%' : 0,
+          // marginRight: Platform.OS == 'android' ? 70 : 0,
           marginTop: '5%',
         }}>
         <Image
@@ -20,7 +27,8 @@ const Banners = (Props: BannerProps) => {
           style={{
             borderRadius: 20,
             height: SIZES.height * 0.2,
-            width: SIZES.width * 0.8,
+            width:
+              Platform.OS == 'android' ? SIZES.width * 0.75 : SIZES.width * 0.8,
           }}
           source={item.img}
         />

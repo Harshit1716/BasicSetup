@@ -7,6 +7,7 @@ import {
   StyleSheet,
   Image,
   ScrollView,
+  Platform,
 } from 'react-native';
 import {COLORS, FONTS, ICONS} from '../../resources';
 import {useAppDispatch} from '../../stateManagemer/Store';
@@ -90,7 +91,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   logoContainer: {
-    marginTop: '20%',
+    marginTop: Platform.OS == 'android' ? '5%' : '20%',
     marginBottom: -40,
   },
   logoText: {
@@ -128,13 +129,13 @@ const styles = StyleSheet.create({
   forgotPassword: {
     // color: '#FFD600',
     ...FONTS.body4,
-    marginVertical: '5%',
+    marginVertical: Platform.OS == 'android' ? '3%' : '5%',
     textAlign: 'right',
   },
   signupContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: '20%',
+    marginVertical: Platform.OS == 'android' ? '10%' : '20%',
   },
   signupText: {
     ...FONTS.body4,
@@ -154,8 +155,7 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 16,
     // marginBottom: '20%',
-
-    marginTop: 50,
+    marginTop: Platform.OS == 'android' ? '10%' : 50,
   },
   googleIcon: {
     width: 20,
@@ -173,7 +173,7 @@ const styles = StyleSheet.create({
     width: '90%',
     borderColor: COLORS.lightGray,
     // marginVertical: 16,
-    marginTop: '5%',
+    marginTop: Platform.OS == 'android' ? '3%' : '5%',
   },
 });
 

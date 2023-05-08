@@ -12,9 +12,14 @@ import React from 'react';
 import {COLORS, FONTS, ICONS, SHADOW, SIZES} from '../../resources';
 import {Alert} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
+import {useAppDispatch, useAppSelector} from '../../stateManagemer/Store';
+import {OrderType} from '../../stateManagemer/models/UserProfileModel';
+// import {removeFromCart} from '../../stateManagemer/slice/UserSlice';
 
 const Cart = () => {
   const navigation = useNavigation();
+  const dispatch = useAppDispatch();
+  const cart = useAppSelector(state => state.userReducer.cart);
   const headerComponent = () => {
     return (
       <View style={{flexDirection: 'row', alignItems: 'center'}}>
@@ -25,13 +30,13 @@ const Cart = () => {
           style={{padding: '2%', marginLeft: '2%'}}>
           <Image
             resizeMode="contain"
-            style={{tintColor: COLORS.black, height: 40, width: 40}}
+            style={{tintColor: COLORS.black, height: 30, width: 30}}
             source={ICONS.BACKWARD_ICON}
           />
         </TouchableOpacity>
         <Text
           style={{
-            ...FONTS.h1,
+            ...FONTS.h2,
             flex: 1,
             textAlign: 'center',
             marginRight: '18%',
@@ -41,7 +46,13 @@ const Cart = () => {
       </View>
     );
   };
-  const renderServiceItem = () => {
+  const renderServiceItem = ({
+    item,
+    index,
+  }: {
+    item: OrderType;
+    index: number;
+  }) => {
     return (
       <View
         style={{
@@ -53,13 +64,13 @@ const Cart = () => {
           margin: '2%',
           ...SHADOW,
           justifyContent: 'center',
+          // backgroundColor: COLORS.white,
           alignItems: 'center',
           flexDirection: 'row',
         }}>
         <View style={{flex: 1}}>
           <Text numberOfLines={2} style={{...FONTS.h3, marginBottom: '2%'}}>
-            {/* {item.name} */}
-            AC FILTER
+            {item.serviceName}
           </Text>
           <View
             style={{
@@ -82,43 +93,7 @@ const Cart = () => {
               -----------------------------------
             </Text>
           </View>
-          <View
-            style={{
-              // paddingVertical: '3%',
-              paddingRight: '3%',
-            }}>
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                left: -10,
-              }}>
-              <Image
-                resizeMode="contain"
-                style={{height: 25, width: 25}}
-                source={ICONS.DOT_ICON}
-              />
-              <Text
-                numberOfLines={1}
-                style={{...FONTS.body4, color: COLORS.gray}}>
-                100% colophony free
-              </Text>
-            </View>
 
-            <View
-              style={{flexDirection: 'row', alignItems: 'center', left: -10}}>
-              <Image
-                resizeMode="contain"
-                style={{height: 25, width: 25}}
-                source={ICONS.DOT_ICON}
-              />
-              <Text
-                numberOfLines={1}
-                style={{...FONTS.body4, color: COLORS.gray}}>
-                100% colophony free
-              </Text>
-            </View>
-          </View>
           <Text
             style={{
               ...FONTS.h3,
@@ -126,7 +101,7 @@ const Cart = () => {
               marginBottom: '2%',
               marginLeft: '2%',
             }}>
-            Rs. {'452'}/-
+            Rs. {item.orderAmount}/-
           </Text>
         </View>
         <View style={{alignSelf: 'flex-start'}}>
@@ -139,7 +114,10 @@ const Cart = () => {
             }}
             source={ICONS.AC_SERVICE_ICON}
           />
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              // dispatch(removeFromCart({id: index, price: item.orderAmount}));
+            }}>
             <View
               style={{
                 backgroundColor: 'white',
@@ -168,79 +146,31 @@ const Cart = () => {
   const checkoutComponent = () => {
     return (
       <View style={{padding: '5%'}}>
-        <Text style={{...FONTS.h1, color: COLORS.gray}}>Checkout</Text>
+        <Text style={{...FONTS.h2, color: COLORS.gray}}>Checkout</Text>
         <View
           style={{
             flexDirection: 'row',
-            padding: '2%',
+
             borderBottomWidth: 1,
             borderBottomColor: COLORS.lightGray,
-            // borderRadius: 10,
+            paddingBottom: '3%',
           }}>
-          <Text style={{...FONTS.body3, flex: 1}}>{'5'} Items</Text>
-          <TouchableOpacity>
-            <Image style={{height: 30, width: 30}} source={ICONS.CLOSE_ICON} />
-          </TouchableOpacity>
+          <Text style={{...FONTS.body3, flex: 1}}>
+            Total :- {cart?.Orders.length ?? 0} Items
+          </Text>
         </View>
       </View>
     );
   };
-  return (
-    <View style={{paddingTop: Platform.OS == 'ios' ? '13%' : '5%', flex: 1}}>
-      {headerComponent()}
-      {checkoutComponent()}
-      <FlatList
-        // ListFooterComponent={() => {
-        //   return (
-        //     <View
-        //       style={{
-        //         padding: '5%',
-        //         borderTopWidth: 1,
-        //         borderTopColor: COLORS.lightGray,
-
-        //         marginBottom: '10%',
-        //         marginHorizontal: '2%',
-        //       }}>
-        //       <View style={{flexDirection: 'row'}}>
-        //         <Text style={{flex: 1, ...FONTS.body3}}>Order Total: </Text>
-        //         <Text style={{...FONTS.body3}}>1500/-</Text>
-        //       </View>
-        //       <View style={{flexDirection: 'row'}}>
-        //         <Text style={{flex: 1, ...FONTS.body5}}>
-        //           Tax Total {'(10%)'}
-        //           {' :'}
-        //         </Text>
-        //         <Text style={{...FONTS.body5}}>150/- </Text>
-        //       </View>
-        //       <View style={{flexDirection: 'row', marginTop: '5%'}}>
-        //         <Text style={{flex: 1, ...FONTS.h3}}>Total Bill: </Text>
-        //         <Text style={{...FONTS.body3}}>1650/-</Text>
-        //       </View>
-        //       <View style={{flex: 1}}>
-        //         <TouchableOpacity style={[styles.loginBtn]}>
-        //           <Text
-        //             style={{
-        //               color: COLORS.white,
-        //               ...FONTS.h3,
-        //               textAlign: 'center',
-        //             }}>
-        //             PAY NOW
-        //           </Text>
-        //         </TouchableOpacity>
-        //       </View>
-        //     </View>
-        //   );
-        // }}
-        data={[1, 2, 3, 4, 7, 8, 9, 10]}
-        renderItem={({item, index}) => {
-          return <>{renderServiceItem()}</>;
-        }}></FlatList>
+  const payNow = () => {
+    return (
       <View
         style={{
+          height: Platform.OS == 'android' ? '30%' : '25%',
           padding: '5%',
           borderTopWidth: 1,
           borderTopColor: COLORS.lightGray,
-          marginBottom: '20%',
+
           marginHorizontal: '2%',
         }}>
         <View style={{flexDirection: 'row'}}>
@@ -271,6 +201,16 @@ const Cart = () => {
           </TouchableOpacity>
         </View>
       </View>
+    );
+  };
+  return (
+    <View style={{paddingTop: Platform.OS == 'ios' ? '13%' : '5%', flex: 1}}>
+      {headerComponent()}
+      {checkoutComponent()}
+      {(cart?.Orders.length ?? -1) > 0 && (
+        <FlatList data={cart?.Orders} renderItem={renderServiceItem}></FlatList>
+      )}
+      {payNow()}
     </View>
   );
 };
@@ -279,21 +219,17 @@ export default Cart;
 
 const styles = StyleSheet.create({
   loginBtn: {
-    marginTop: '10%',
-    padding: 20,
+    marginTop: '5%',
+    padding: 10,
     width: '80%',
-
-    // justifyContent: 'center',
-    // alignItems: 'center',
     alignSelf: 'center',
-    borderRadius: 20,
+    borderRadius: 10,
     backgroundColor: COLORS.primary,
   },
   container: {
     borderWidth: 1,
     borderColor: '#000',
     borderRadius: 5,
-    // width: 250,
     height: 50,
     justifyContent: 'center',
     alignItems: 'center',
@@ -301,6 +237,5 @@ const styles = StyleSheet.create({
   textInput: {
     fontSize: 18,
     textAlign: 'center',
-    // alignSelf: 'center',
   },
 });
