@@ -21,8 +21,12 @@ const DOT_ICON = require('../assets/dot.png');
 const CLOCK_ICON = require('../assets/Tumer.png');
 const LABEL_ICON = require('../assets/label.png');
 const CLOSE_ICON = require('../assets/close.png');
+const GOOGLE_ICON = require('../assets/google.png');
+const LOGO_ICON = require('../assets/logo.png');
 
 export {
+  GOOGLE_ICON,
+  LOGO_ICON,
   CLOSE_ICON,
   CLOCK_ICON,
   DOT_ICON,

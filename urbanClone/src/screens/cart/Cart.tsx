@@ -190,51 +190,87 @@ const Cart = () => {
       {headerComponent()}
       {checkoutComponent()}
       <FlatList
-        ListFooterComponent={() => {
-          return (
-            <View
-              style={{
-                padding: '5%',
-                borderTopWidth: 1,
-                borderTopColor: COLORS.lightGray,
+        // ListFooterComponent={() => {
+        //   return (
+        //     <View
+        //       style={{
+        //         padding: '5%',
+        //         borderTopWidth: 1,
+        //         borderTopColor: COLORS.lightGray,
 
-                marginBottom: '10%',
-                marginHorizontal: '2%',
-              }}>
-              <View style={{flexDirection: 'row'}}>
-                <Text style={{flex: 1, ...FONTS.body3}}>Order Total: </Text>
-                <Text style={{...FONTS.body3}}>1500/-</Text>
-              </View>
-              <View style={{flexDirection: 'row'}}>
-                <Text style={{flex: 1, ...FONTS.body5}}>
-                  Tax Total {'(10%)'}
-                  {' :'}
-                </Text>
-                <Text style={{...FONTS.body5}}>150/- </Text>
-              </View>
-              <View style={{flexDirection: 'row', marginTop: '5%'}}>
-                <Text style={{flex: 1, ...FONTS.h3}}>Total Bill: </Text>
-                <Text style={{...FONTS.body3}}>1650/-</Text>
-              </View>
-              <View style={{flex: 1}}>
-                <TouchableOpacity style={[styles.loginBtn]}>
-                  <Text
-                    style={{
-                      color: COLORS.white,
-                      ...FONTS.h3,
-                      textAlign: 'center',
-                    }}>
-                    PAY NOW
-                  </Text>
-                </TouchableOpacity>
-              </View>
-            </View>
-          );
-        }}
+        //         marginBottom: '10%',
+        //         marginHorizontal: '2%',
+        //       }}>
+        //       <View style={{flexDirection: 'row'}}>
+        //         <Text style={{flex: 1, ...FONTS.body3}}>Order Total: </Text>
+        //         <Text style={{...FONTS.body3}}>1500/-</Text>
+        //       </View>
+        //       <View style={{flexDirection: 'row'}}>
+        //         <Text style={{flex: 1, ...FONTS.body5}}>
+        //           Tax Total {'(10%)'}
+        //           {' :'}
+        //         </Text>
+        //         <Text style={{...FONTS.body5}}>150/- </Text>
+        //       </View>
+        //       <View style={{flexDirection: 'row', marginTop: '5%'}}>
+        //         <Text style={{flex: 1, ...FONTS.h3}}>Total Bill: </Text>
+        //         <Text style={{...FONTS.body3}}>1650/-</Text>
+        //       </View>
+        //       <View style={{flex: 1}}>
+        //         <TouchableOpacity style={[styles.loginBtn]}>
+        //           <Text
+        //             style={{
+        //               color: COLORS.white,
+        //               ...FONTS.h3,
+        //               textAlign: 'center',
+        //             }}>
+        //             PAY NOW
+        //           </Text>
+        //         </TouchableOpacity>
+        //       </View>
+        //     </View>
+        //   );
+        // }}
         data={[1, 2, 3, 4, 7, 8, 9, 10]}
         renderItem={({item, index}) => {
           return <>{renderServiceItem()}</>;
         }}></FlatList>
+      <View
+        style={{
+          padding: '5%',
+          borderTopWidth: 1,
+          borderTopColor: COLORS.lightGray,
+          marginBottom: '20%',
+          marginHorizontal: '2%',
+        }}>
+        <View style={{flexDirection: 'row'}}>
+          <Text style={{flex: 1, ...FONTS.body3}}>Order Total: </Text>
+          <Text style={{...FONTS.body3}}>1500/-</Text>
+        </View>
+        <View style={{flexDirection: 'row'}}>
+          <Text style={{flex: 1, ...FONTS.body5}}>
+            Tax Total {'(10%)'}
+            {' :'}
+          </Text>
+          <Text style={{...FONTS.body5}}>150/- </Text>
+        </View>
+        <View style={{flexDirection: 'row', marginTop: '5%'}}>
+          <Text style={{flex: 1, ...FONTS.h3}}>Total Bill: </Text>
+          <Text style={{...FONTS.body3}}>1650/-</Text>
+        </View>
+        <View style={{flex: 1}}>
+          <TouchableOpacity style={[styles.loginBtn]}>
+            <Text
+              style={{
+                color: COLORS.white,
+                ...FONTS.h3,
+                textAlign: 'center',
+              }}>
+              PAY NOW
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </View>
     </View>
   );
 };

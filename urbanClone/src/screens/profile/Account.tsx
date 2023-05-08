@@ -52,6 +52,7 @@ const options = [
   },
 ];
 const Account = () => {
+  const navigation = useNavigation();
   const dispatch = useAppDispatch();
   const user = useAppSelector(state => state.userReducer);
   const listRow = ({item, index}: {item: any; index: number}) => {
@@ -74,6 +75,9 @@ const Account = () => {
   const accountRow = () => {
     return (
       <TouchableOpacity
+        onPress={() => {
+          navigation.navigate('Profile');
+        }}
         style={{
           backgroundColor: COLORS.white,
           padding: '4%',

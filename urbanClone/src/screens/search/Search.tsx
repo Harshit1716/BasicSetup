@@ -72,7 +72,7 @@ const Search = () => {
         style={{
           marginTop: '5%',
           borderRadius: 10,
-          height: SIZES.height * 0.07,
+          height: SIZES.height * 0.05,
           width: '90%',
           backgroundColor: COLORS.white,
           alignSelf: 'center',
@@ -87,7 +87,7 @@ const Search = () => {
             borderRadius: 10,
             justifyContent: 'center',
             alignItems: 'center',
-            height: SIZES.height * 0.07,
+            height: SIZES.height * 0.05,
             // width: '80%',
             flex: 1,
             backgroundColor: providerSelected ? COLORS.white : COLORS.primary,
@@ -97,7 +97,7 @@ const Search = () => {
           <Text
             style={{
               textAlign: 'center',
-              ...FONTS.h2,
+              ...FONTS.h3,
               color: !providerSelected ? COLORS.white : COLORS.primary,
             }}>
             Service
@@ -111,7 +111,7 @@ const Search = () => {
             justifyContent: 'center',
             alignItems: 'center',
             borderRadius: 10,
-            height: SIZES.height * 0.07,
+            height: SIZES.height * 0.05,
             backgroundColor: !providerSelected ? COLORS.white : COLORS.primary,
             alignSelf: 'center',
             flex: 1,
@@ -120,7 +120,7 @@ const Search = () => {
           <Text
             style={{
               textAlign: 'center',
-              ...FONTS.h2,
+              ...FONTS.h3,
               color: providerSelected ? COLORS.white : COLORS.primary,
             }}>
             Provider

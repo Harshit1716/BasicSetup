@@ -39,12 +39,14 @@ export const getData = createAsyncThunk(
 interface CounterState {
   value: number;
   data: HomeInterface;
+  flag: boolean;
 }
 
 // Define the initial state using that type
 const initialState: CounterState = {
   value: 1,
   data: {},
+  flag: true,
 };
 
 export const counterSlice = createSlice({
@@ -61,6 +63,9 @@ export const counterSlice = createSlice({
     // Use the PayloadAction type to declare the contents of `action.payload`
     incrementByAmount: (state, action: PayloadAction<number>) => {
       state.value += action.payload;
+    },
+    setFlag: (state, action: PayloadAction<boolean>) => {
+      state.flag = action.payload;
     },
   },
   extraReducers: builder => {
@@ -79,6 +84,7 @@ export const counterSlice = createSlice({
   },
 });
 
-export const {increment, decrement, incrementByAmount} = counterSlice.actions;
+export const {increment, decrement, incrementByAmount, setFlag} =
+  counterSlice.actions;
 
 export default counterSlice.reducer;

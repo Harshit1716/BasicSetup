@@ -91,12 +91,12 @@ const OnBoarding = ({navigation}: any) => {
               <TouchableOpacity
                 style={[{marginVertical: '20%'}, styles.loginBtn]}
                 onPress={() => {
-                  const data = {
-                    email: 'harry@yopmail.com',
-                    name: 'Harry Potter',
-                  };
-                  dipatch(login(data));
-                  // navigation?.navigate('BottomTabs');
+                  // const data = {
+                  //   email: 'harry@yopmail.com',
+                  //   name: 'Harry Potter',
+                  // };
+                  // dipatch(login(data));
+                  navigation?.navigate('Login');
                   // console.log('button pressed');
                 }}>
                 <Text style={{color: COLORS.white, ...FONTS.h3}}>
